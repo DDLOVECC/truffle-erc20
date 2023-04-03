@@ -2,7 +2,9 @@ require('dotenv').config();
 // const { MNEMONIC, PROJECT_ID } = process.env;
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
-
+const privKey = process.env.privKey;
+const infuraId = process.env.infuraId;
+const apiKey = process.env.apiKey;
 module.exports = {
 
 
@@ -27,7 +29,10 @@ module.exports = {
   mocha: {
     // timeout: 100000
   },
-
+  plugins: ['truffle-plugin-verify'],
+   api_keys: {
+        etherscan: apiKey,
+    },
   // Configure your compilers
   compilers: {
     solc: {
