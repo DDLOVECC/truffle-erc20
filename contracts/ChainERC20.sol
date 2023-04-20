@@ -23,12 +23,14 @@ contract ChainERC20 is ERC20 {
     function mint(uint256 amount) public returns (bool) {
         require(msg.sender == owner, "Only the owner can mint new tokens");
         _mint(msg.sender, amount * 10 ** decimals());
+        _totalSupply += amount * 10 ** decimals();
         return true;
     }
 
     function burn(uint256 amount) public returns (bool) {
         require(msg.sender == owner, "Only the owner can burn tokens");
         _burn(msg.sender, amount * 10 ** decimals());
+        _totalSupply -= amount * 10 ** decimals();
         return true;
     }
 
